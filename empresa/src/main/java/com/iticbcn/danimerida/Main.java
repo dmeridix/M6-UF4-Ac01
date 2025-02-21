@@ -282,10 +282,7 @@ public class Main {
         int id = Integer.parseInt(br.readLine());
 
         if (dao instanceof DepartamentDAO) {
-            Departament departament = ((DepartamentDAO) dao).get(id);
-            if (departament != null) {
-                ((DepartamentDAO) dao).delete(departament);
-            }
+            ((DepartamentDAO) dao).deleteDepartament(id);
         } else if (dao instanceof EmpleatDAO) {
             Empleat empleat = ((EmpleatDAO) dao).get(id);
             if (empleat != null) {

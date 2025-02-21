@@ -7,17 +7,16 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 
 public class EmpleatDAO extends GenDAOImpl<Empleat>{
-    private SessionFactory sessionFactory;
     public EmpleatDAO(SessionFactory sessionFactory) {
         super(sessionFactory,Empleat.class);
     }
     // Consultes HQL 
     public List<Object[]> contarEmpleatsPerDepartament() {
-        try (Session sessio = sessionFactory.openSession()) {
+        try (Session sessio = getSessionFactory().openSession()) {  // Usar getSessionFactory() en lugar de sessionFactory
             return sessio.createQuery(
                 "SELECT e.departament.nom, COUNT(e) FROM Empleat e GROUP BY e.departament.nom",
                 Object[].class
-                ).list();
+            ).list();
         }
     }
 }
